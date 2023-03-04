@@ -1,12 +1,34 @@
-import { configureStore } from '@reduxjs/toolkit';
-import { createWrapper } from 'next-redux-wrapper';
+import { configureStore, combineReducers, Action, ThunkAction } from '@reduxjs/toolkit';
+import { createWrapper, HYDRATE } from 'next-redux-wrapper';
+import searchReducer from './search-slice/search-slice';
+import wishListReducer from './wish-list-slice/wish-list-slice';
+
+const combinedReducers = combineReducers({
+  search: searchReducer,
+  wishList: wishListReducer,
+});
+
+
+const reducer: typeof combinedReducers = (state, action) => {
+  if (action.type === HYDRATE) {
+    return {
+      ...state,
+      ...action.payload,
+    };
+  } else {
+    return combinedReducers(state, action);
+  }
+};
 
 const makeStore = () => configureStore({
-    reducer: {},
+    reducer,
     devTools: true,
   },
-)
+);
 
-export type AppStore = ReturnType<typeof makeStore>
+type AppStore = ReturnType<typeof makeStore>
+export type RootState = ReturnType<AppStore['getState']>
 
-export const wrapper = createWrapper<AppStore>(makeStore)
+export type AppDispatch = AppStore['dispatch']
+
+export const wrapper = createWrapper<AppStore>(makeStore);

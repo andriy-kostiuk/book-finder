@@ -1,21 +1,27 @@
 import { GetServerSideProps } from 'next';
 import { BookApi } from '@/interfaces/book-api';
+import booksApi from '@/axios/books-api';
+import React from 'react';
+import BookProduct from '@/components/blocks/book-product/book-product';
 
-interface BookPageProps extends BookApi {
+interface BookPageProps {
+  book: BookApi;
 }
 
-export default function BookPage() {
+export default function BookPage({book}: BookPageProps) {
   return (
     <>
-      <h1>BookId</h1>
+      <BookProduct book={book} />
     </>
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async ({query}) => {
-  const bookId = query['book-id'] as String;
-  console.log(bookId);
+export const getServerSideProps: GetServerSideProps<BookPageProps> = async ({query}) => {
+  const bookId = query['book-id'] as string;
+  const res = await booksApi.get(`/${bookId}?`);
   return {
-    props: {},
+    props: {book: res.data},
   };
 };
+
+

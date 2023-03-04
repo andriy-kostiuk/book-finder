@@ -1,7 +1,6 @@
-import Search from '@/components/blocks/search/search';
-import SearchResults from '@/components/blocks/search-results/search-results';
 import { useEffect } from 'react';
 import { initWishList } from '@/store/wish-list-slice/wish-list-slice';
+import WishList from '@/components/blocks/wish-list/wish-list';
 import { useAppDispatch } from '@/hooks/store-hooks';
 
 export default function Home() {
@@ -13,8 +12,7 @@ export default function Home() {
 
   return (
     <>
-      <Search />
-      <SearchResults />
+      <WishList />
     </>
   );
 }

@@ -1,14 +1,12 @@
 import React, { FC } from 'react';
+import Nav from '@/components/blocks/nav/nav';
+import { StyledHeader } from '@/components/layouts/header/styled';
 
-interface Props {
-  
-}
-
-const Header: FC<Props> = (props) => {
+const Header: FC = () => {
   return (
-    <div>
-
-      </div>
+    <StyledHeader>
+      <Nav />
+    </StyledHeader>
   );
 };
 
