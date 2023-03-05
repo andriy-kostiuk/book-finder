@@ -1,24 +1,30 @@
 import booksApi from '@/axios/books-api';
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { BookApi, BookRequest } from '@/interfaces/book-api';
+import { RootState } from '@/store/store';
 
 interface ISearch {
   foundBooks: BookApi[];
-  totalBooks: number,
   status: 'loading' | 'loaded' | 'error';
+  maxResults: number;
+  startIndex: number;
+  template: string;
 }
 
 const initialState: ISearch = {
   foundBooks: [],
-  totalBooks: 0,
   status: 'loaded',
+  maxResults: 12,
+  startIndex: 0,
+  template: '',
 };
 
-
-export const fetchSimilarBooks = createAsyncThunk<BookRequest, string>(
+export const fetchSimilarBooks = createAsyncThunk<BookRequest, void, { state: RootState }>(
   'search/fetchSimilarBooks',
-  async (id) => {
-    const res = await booksApi.get<BookRequest>(`?&q=${id}&startIndex=0&maxResults=12`);
+  async (_, {getState}) => {
+    const {startIndex, maxResults, template} = getState().search;
+
+    const res = await booksApi.get<BookRequest>(`?&q=${template}&startIndex=${startIndex}&maxResults=${maxResults}`);
     return res.data;
   },
 );
@@ -26,7 +32,13 @@ export const fetchSimilarBooks = createAsyncThunk<BookRequest, string>(
 const searchSlice = createSlice({
   name: 'search',
   initialState,
-  reducers: {},
+  reducers: {
+    changeTemplate: (state, action: PayloadAction<string>) => {
+      state.template = action.payload;
+      state.startIndex = 0;
+      state.foundBooks = [];
+    },
+  },
   extraReducers: builder => {
     builder
       .addCase(fetchSimilarBooks.pending, (state) => {
@@ -34,15 +46,15 @@ const searchSlice = createSlice({
       })
       .addCase(fetchSimilarBooks.fulfilled, (state, action) => {
         state.status = 'loaded';
-        state.foundBooks = action.payload.items;
-        state.totalBooks = action.payload.totalItems;
+        state.foundBooks.push(...action.payload.items);
+        state.startIndex += state.maxResults;
       })
       .addCase(fetchSimilarBooks.rejected, (state) => {
         state.status = 'error';
-        state.totalBooks = 0;
         state.foundBooks = [];
       });
   },
 });
 
+export const {changeTemplate} = searchSlice.actions;
 export default searchSlice.reducer;

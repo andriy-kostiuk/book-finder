@@ -23,5 +23,3 @@ export const getServerSideProps: GetServerSideProps<BookPageProps> = async ({que
     props: {book: res.data},
   };
 };
-
-

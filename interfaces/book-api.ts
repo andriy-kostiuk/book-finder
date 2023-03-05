@@ -1,9 +1,9 @@
 export interface BookVolumeInfo {
-  'title': string
-  'authors': string[]
-  'publisher': string
-  'publishedDate': string
-  'description': string
+  'title'?: string
+  'authors'?: string[]
+  'publisher'?: string
+  'publishedDate'?: string
+  'description'?: string
   'industryIdentifiers': [
     {
       'type': string
@@ -14,7 +14,7 @@ export interface BookVolumeInfo {
       'identifier': string
     },
   ],
-  'pageCount': number
+  'pageCount'?: number
   'dimensions': {
     'height': string
     'width': string
@@ -26,7 +26,7 @@ export interface BookVolumeInfo {
   'averageRating': number
   'ratingsCount': number
   'contentVersion': string
-  'imageLinks': {
+  'imageLinks'?: {
     'smallThumbnail': string
     'thumbnail': string
     'small': string
@@ -43,15 +43,15 @@ export interface BookSaleInfo {
   'country': string
   'saleability': string
   'isEbook': boolean
-  'listPrice': {
+  'listPrice'?: {
     'amount': number
     'currencyCode': string
   },
-  'retailPrice': {
+  'retailPrice'?: {
     'amount': number
     'currencyCode': string
   },
-  'buyLink': string
+  'buyLink'?: string
 }
 
 export interface BookApi {

@@ -5,12 +5,18 @@ import { BooksListItem, StyledBooksList } from '@/components/layouts/books-list/
 
 interface Props {
   books: BookApi[];
+  lastElementRef?: any;
 }
 
-const BooksList: FC<Props> = ({books}) => {
+const BooksList: FC<Props> = ({books, lastElementRef}) => {
   return (
     <StyledBooksList>
-      {books.map((book) => <BooksListItem key={book.id}><BookCard {...book} /></BooksListItem>)}
+      {books.map((book, index, arr) => {
+        if (lastElementRef && index === arr.length - 1) {
+          return (<BooksListItem ref={lastElementRef} key={book.id}><BookCard {...book} /></BooksListItem>);
+        }
+        return (<BooksListItem key={book.id}><BookCard {...book} /></BooksListItem>);
+      })}
     </StyledBooksList>
   );
 };

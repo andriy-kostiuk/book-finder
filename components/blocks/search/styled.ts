@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { VisuallyHidden } from '@/components/styles';
 
 export const Wrapper = styled.div`
   display: flex;
@@ -75,7 +74,7 @@ export const Submit = styled.button`
   border-radius: 5px;
   color: ${({theme}) => theme.colors.baseWhite};
   cursor: pointer;
-  
+
   &:hover {
     background-color: ${({theme}) => theme.colors.hover};
   }
@@ -83,8 +82,4 @@ export const Submit = styled.button`
   &:active {
     background-color: ${({theme}) => theme.colors.active};
   }
-`;
-
-export const HiddenLabel = styled.label`
-  ${VisuallyHidden}
 `;

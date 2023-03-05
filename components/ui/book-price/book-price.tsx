@@ -16,7 +16,19 @@ const BookPrice: FC<Props> = ({saleInfo, title}) => {
     );
   }
 
-  const currency = saleInfo.retailPrice.currencyCode === 'UAH' ? 'грн' : saleInfo.retailPrice.currencyCode;
+  const defineCurrency = (cur: string): string => {
+    switch (saleInfo.retailPrice.currencyCode) {
+      case 'UAH' :
+        return 'грн';
+      case 'USD' :
+        return '$';
+      default :
+        return cur;
+    }
+  };
+
+  const currency = defineCurrency(saleInfo.retailPrice.currencyCode);
+
   return (<Link href={saleInfo.buyLink} $type={'googlePlay'}>
     {`Купити на Google Play: ${saleInfo.retailPrice.amount} ${currency}`}
   </Link>);
