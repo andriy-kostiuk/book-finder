@@ -4,7 +4,7 @@ import { Link } from '@/components/ui/book-price/styled';
 
 interface Props {
   saleInfo: BookSaleInfo;
-  title: string;
+  title?: string;
 }
 
 const BookPrice: FC<Props> = ({saleInfo, title}) => {
@@ -17,7 +17,7 @@ const BookPrice: FC<Props> = ({saleInfo, title}) => {
   }
 
   const defineCurrency = (cur: string): string => {
-    switch (saleInfo.retailPrice.currencyCode) {
+    switch (saleInfo.retailPrice?.currencyCode) {
       case 'UAH' :
         return 'грн';
       case 'USD' :

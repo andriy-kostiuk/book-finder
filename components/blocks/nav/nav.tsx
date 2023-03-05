@@ -1,7 +1,8 @@
 import React, { FC, useState } from 'react';
 import NavItem from '@/components/ui/nav-item/nav-item';
 import { INavItem } from '@/interfaces/nav-item';
-import { NavToggle, NavToggleLabel, StyledNav, Ul } from './styled';
+import { NavToggle, StyledNav, Ul } from './styled';
+import HiddenElement from '@/components/ui/hidden-element/hidden-element';
 
 const navItems: INavItem[] = [
   {
@@ -26,9 +27,9 @@ const Nav: FC = () => {
   return (
     <StyledNav>
       <NavToggle $isOpenNav={isOpenNav} onClick={toggleNav}>
-        <NavToggleLabel>
+        <HiddenElement>
           {isOpenNav ? 'Закрити меню' : 'Відкрити меню'}
-        </NavToggleLabel>
+        </HiddenElement>
       </NavToggle>
       <Ul $isOpenNav={isOpenNav}>
         {navItems.map((props) => <li key={props.href}><NavItem {...props} /></li>)}

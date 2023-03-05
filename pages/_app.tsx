@@ -16,7 +16,7 @@ export default function App({Component, ...rest}: AppProps) {
   return <>
     <Head>
       <meta name="viewport" content="width=device-width, initial-scale=1" />
-      <title>Book finder</title>
+      <title>BookFinder</title>
     </Head>
     <Provider store={store}>
       <ThemeProvider theme={theme}>

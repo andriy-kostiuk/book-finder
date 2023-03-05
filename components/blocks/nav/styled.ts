@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components';
-import { VisuallyHidden } from '@/components/styles';
 
 interface INavToggle {
   $isOpenNav: boolean;
@@ -82,8 +81,4 @@ export const NavToggle = styled.button<INavToggle>`
               box-shadow: 0 12px 0 0 ${({theme}) => theme.colors.primary}, 0 24px 0 0 ${({theme}) => theme.colors.primary};
             }
           `}
-`;
-
-export const NavToggleLabel = styled.span`
-  ${VisuallyHidden}
 `;

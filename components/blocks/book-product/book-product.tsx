@@ -28,7 +28,7 @@ const BookProduct: FC<Props> = ({book}) => {
       </Header>
       <DescriptionContainer>
         <Image src={image} width={300} height={450}
-               alt={volumeInfo.title} priority={true} />
+               alt={volumeInfo.title || ''} priority={true} />
         <InformationContainer>
           <div>
             <BookInformation {...volumeInfo} />

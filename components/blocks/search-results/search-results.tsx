@@ -20,7 +20,7 @@ const SearchResults: FC = () => {
     if (inView && foundBooks.length < maxResults) {
       dispatch(fetchSimilarBooks());
     }
-  }, [inView]);
+  }, [inView, dispatch, foundBooks.length]);
 
   return (
     <Section>

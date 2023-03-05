@@ -33,7 +33,7 @@ const Search: FC = () => {
         <Form onSubmit={handleSubmit(onSubmit)}>
           <HiddenElement as={'label'} htmlFor="search">Пошук</HiddenElement>
           <Field {...register('template')} type={'text'} id="search" placeholder={'Прізвище автора або назва книги'} />
-          <Submit type={'submit'}>Search</Submit>
+          <Submit type={'submit'}>Знайти</Submit>
         </Form>
       </FormWrapper>
       <ImageWrapper>

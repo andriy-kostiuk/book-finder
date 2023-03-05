@@ -1,4 +1,5 @@
 import { GetServerSideProps } from 'next';
+import Head from 'next/head';
 import { BookApi } from '@/interfaces/book-api';
 import booksApi from '@/axios/books-api';
 import React from 'react';
@@ -11,6 +12,11 @@ interface BookPageProps {
 export default function BookPage({book}: BookPageProps) {
   return (
     <>
+      <Head>
+        <title>
+          {book.volumeInfo.title}
+        </title>
+      </Head>
       <BookProduct book={book} />
     </>
   );
