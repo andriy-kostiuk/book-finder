@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 
 export const StyledBooksList = styled.ul`
   margin: 0;
@@ -19,8 +20,10 @@ export const StyledBooksList = styled.ul`
   }
 `;
 
-export const BooksListItem = styled.li`
+export const BooksListItem = styled(motion.li)`
+  position: relative;
   background-color: ${({theme}) => theme.colors.baseWhite};
   border-radius: 10px;
   padding: 10px 20px 20px 20px;
+  overflow: hidden;
 `;

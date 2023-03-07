@@ -10,7 +10,7 @@ import {
 } from '@/components/blocks/book-product/styled';
 import defaultBook from '@/public/default-book-large.jpg';
 import BookPrice from '@/components/ui/book-price/book-price';
-import WishListBtn from '@/components/ui/wish-list-btn/wish-list-btn';
+import WishListBtn from '@/components/ui/wish-list-btn/wish-list-bth';
 
 interface Props {
   book: BookApi;

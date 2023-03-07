@@ -6,6 +6,7 @@ export const Section = styled.section`
 `;
 
 export const Header = styled.header`
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;

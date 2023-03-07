@@ -1,5 +1,6 @@
 interface Viewports {
   mobileWidth: string;
+  maxMobileWidth: string;
   tabletWidth: string;
   laptopWidth: string;
   desktopWidth: string;

@@ -1,31 +1,11 @@
-import styled, { css } from 'styled-components';
+import { motion } from 'framer-motion';
+import styled from 'styled-components';
 
-interface IButton {
-  $availability: boolean;
-  $marginBottom?: number;
-}
-
-export const Button = styled.button<IButton>`
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: ${(props) => props.$marginBottom ? `${props.$marginBottom}px` : 0};
+export const Button = styled(motion.button)`
   border: none;
-  background-color: inherit;
+  padding: 0;
+  line-height: 0;
+  background-color: transparent;
   cursor: pointer;
   color: inherit;
-
-  ${(props) => props.$availability ?
-          css`
-            svg path {
-              fill: red;
-            }
-          ` : css`
-            svg path {
-              fill: gray;
-            }
-          `}
-  p {
-    margin: 0;
-  }
 `;

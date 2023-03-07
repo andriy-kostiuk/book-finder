@@ -12,8 +12,9 @@ import {
   Title,
   Wrapper,
 } from '@/components/blocks/search/styled';
-import { useAppDispatch } from '@/hooks/store-hooks';
+import { useAppDispatch, useAppSelector } from '@/hooks/store-hooks';
 import HiddenElement from '@/components/ui/hidden-element/hidden-element';
+import { selectSearch } from '@/store/selectors';
 
 interface FormValues {
   template: string;
@@ -21,7 +22,9 @@ interface FormValues {
 
 const Search: FC = () => {
   const dispatch = useAppDispatch();
-  const {register, handleSubmit} = useForm<FormValues>();
+  const {template} = useAppSelector(selectSearch);
+  const {register, handleSubmit} = useForm<FormValues>({defaultValues: {template: template}});
+
   const onSubmit: SubmitHandler<FormValues> = (data) => {
     dispatch(changeTemplate(data.template));
     dispatch(fetchSimilarBooks());
@@ -32,8 +35,13 @@ const Search: FC = () => {
         <Title>BookFinder</Title>
         <Form onSubmit={handleSubmit(onSubmit)}>
           <HiddenElement as={'label'} htmlFor="search">Пошук</HiddenElement>
-          <Field {...register('template')} type={'text'} id="search" placeholder={'Прізвище автора або назва книги'} />
-          <Submit type={'submit'}>Знайти</Submit>
+          <Field {...register('template')}
+                 type={'text'} id="search"
+                 placeholder={'Прізвище автора або назва книги'} />
+          <Submit type={'submit'}
+                  whileTap={{scale: 1}}
+                  whileHover={{scale: 1.1}}
+          >Знайти</Submit>
         </Form>
       </FormWrapper>
       <ImageWrapper>

@@ -13,6 +13,7 @@ export const theme: ITheme = {
   },
   viewports: {
     mobileWidth: '320px',
+    maxMobileWidth: '767px',
     tabletWidth: '768px',
     laptopWidth: '1024px',
     desktopWidth: '1440px',

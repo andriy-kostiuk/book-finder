@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
@@ -64,7 +65,7 @@ export const Field = styled.input`
   line-height: inherit;
 `;
 
-export const Submit = styled.button`
+export const Submit = styled(motion.button)`
   position: absolute;
   right: 15px;
   top: 8px;
